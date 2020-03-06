@@ -8,9 +8,17 @@ int main()
 {
 	using namespace Pixel;
 
-	std::unique_ptr<Graphics::SDL2Window> window(new Graphics::SDL2Window());
-	std::unique_ptr<Graphics::SDL2Renderer> renderer(new Graphics::SDL2Renderer(window->getSDLWindow()));
-	std::unique_ptr<Graphics::SDL2Texture> texture(new Graphics::SDL2Texture(renderer->getSDLRenderer(), {100, 100}));
+	std::unique_ptr< Graphics::IWindow > window( new Graphics::SDL2Window() );
+	std::unique_ptr< Graphics::ITexture > texture( new Graphics::SDL2Texture(
+		static_cast< Graphics::SDL2Window* >( window.get() )
+			->getSDL2Renderer()
+			->getNativeSDL2Renderer(),
+		{ 100, 100 } ) );
+
+	while( !window->getShouldClose() )
+	{
+		window->update();
+	}
 
 	return 0;
 }

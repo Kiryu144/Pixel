@@ -14,13 +14,16 @@ namespace Graphics
 
 class SDL2Texture : public ITexture
 {
-private:
+protected:
 	Vector2ui m_size;
 	SDL_Texture* m_sdlTexture;
 
+	SDL2Texture(SDL_Renderer* renderer, const Vector2ui& size, int access);
+	SDL_Texture* createTexture(SDL_Renderer* renderer, const Vector2ui& size, int access);
+
 public:
 	SDL2Texture( SDL_Renderer* renderer, const Vector2ui& size );
-	virtual ~SDL2Texture();
+	~SDL2Texture();
 	const Vector2ui& getSize() const override;
 };
 

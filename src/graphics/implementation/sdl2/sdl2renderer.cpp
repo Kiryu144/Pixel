@@ -20,12 +20,12 @@ Pixel::Graphics::SDL2Renderer::~SDL2Renderer()
 	SDL_DestroyRenderer( m_sdlRenderer );
 }
 
-SDL_Renderer* Pixel::Graphics::SDL2Renderer::getSDLRenderer()
+SDL_Renderer* Pixel::Graphics::SDL2Renderer::getNativeSDL2Renderer()
 {
 	return m_sdlRenderer;
 }
 
-const SDL_Renderer* Pixel::Graphics::SDL2Renderer::getSDLRenderer() const
+const SDL_Renderer* Pixel::Graphics::SDL2Renderer::getNativeSDLRenderer() const
 {
 	return m_sdlRenderer;
 }

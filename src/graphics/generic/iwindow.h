@@ -26,6 +26,9 @@ public:
 
 	virtual bool getIsResizeable() const = 0;
 	virtual void setResizeable( bool resizeable ) = 0;
+
+	virtual bool getShouldClose() const = 0;
+	virtual void update() = 0;
 };
 
 } // namespace Graphics

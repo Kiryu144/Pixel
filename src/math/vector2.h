@@ -80,6 +80,10 @@ struct Vector2
 	{
 		return v1.x == x && v1.y == y;
 	}
+
+	T area() const {
+		return x * y;
+	}
 };
 
 typedef Vector2<int> Vector2i;
