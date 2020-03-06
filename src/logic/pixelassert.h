@@ -17,14 +17,15 @@
 
 #ifdef PIXEL_OS_WINDOWS
 #include <windows.h>
-#define pixel_fatal( message )                                                \
-	do                                                                        \
-	{                                                                         \
-		MessageBox( NULL, __FILE__ "(" xstr(__LINE__) "): " message, NULL, MB_OK ); \
-		exit( -1 );                                                           \
+#define pixel_fatal( message )                                                    \
+	do                                                                            \
+	{                                                                             \
+		MessageBox(                                                               \
+			NULL, __FILE__ "(" xstr( __LINE__ ) "): \n\n" message, NULL, MB_OK ); \
+		exit( -1 );                                                               \
 	} while( false )
 #elif defined( PIXEL_OS_LINUX ) || defined( PIXEL_OS_MAC )
-#define pixel_fatal( message)                                    \
+#define pixel_fatal( message )                                         \
 	do                                                                 \
 	{                                                                  \
 		std::cerr << __FILE__ "(" __LINE__ "): " message << std::endl; \
@@ -46,7 +47,7 @@
 #define pixel_assert( condition ) \
 	do                            \
 	{                             \
-                                  \
+		condition;                 \
 	} while( false )
 #endif
 

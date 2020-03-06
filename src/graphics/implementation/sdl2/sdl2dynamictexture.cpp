@@ -7,7 +7,7 @@
 Pixel::Graphics::SDL2DynamicTexture::SDL2DynamicTexture( SDL_Renderer* renderer,
 														 const Vector2ui& size )
 	: SDL2Texture( renderer, size, SDL_TEXTUREACCESS_STREAMING ),
-	  m_pixelData( new uint8_t[ size.area() ] )
+	  m_pixelData( new uint8_t[ size.area() * 4 ] )
 {
 }
 
@@ -18,6 +18,9 @@ uint8_t* Pixel::Graphics::SDL2DynamicTexture::getPixelData()
 
 void Pixel::Graphics::SDL2DynamicTexture::update()
 {
-	pixel_assert( SDL_UpdateTexture(
-		m_sdlTexture, nullptr, m_pixelData.get(), sizeof( uint8_t ) * 4 ) );
+	void* pixels;
+	int pitch;
+	pixel_assert(SDL_LockTexture(m_sdlTexture, nullptr, &pixels, &pitch) == 0);
+	memcpy(pixels, m_pixelData.get(), sizeof( uint8_t ) * 4 * m_size.area());
+	SDL_UnlockTexture(m_sdlTexture);
 }

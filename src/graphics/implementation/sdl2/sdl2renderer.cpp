@@ -13,6 +13,7 @@ Pixel::Graphics::SDL2Renderer::SDL2Renderer( SDL_Window* sdlWindow )
 							  SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
 								  | SDL_RENDERER_TARGETTEXTURE );
 	pixel_assert( m_sdlRenderer );
+	SDL_SetRenderDrawColor(m_sdlRenderer, 48, 48, 48, 255);
 }
 
 Pixel::Graphics::SDL2Renderer::~SDL2Renderer()

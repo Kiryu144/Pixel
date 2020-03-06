@@ -89,6 +89,7 @@ void Pixel::Graphics::SDL2Window::update()
 	}
 
 	SDL_RenderPresent(m_renderer->getNativeSDL2Renderer());
+	SDL_RenderClear(m_renderer->getNativeSDL2Renderer());
 }
 const Pixel::Graphics::SDL2Renderer* Pixel::Graphics::SDL2Window::getSDL2Renderer()
 	const
